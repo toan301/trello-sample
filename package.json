@@ -1,0 +1,16 @@
+{
+  "name": "cypress-sample",
+  "version": "1.0.0",
+  "description": "cypress test",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "keywords": [
+    "cypress"
+  ],
+  "author": "Toan Tran",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.8.1"
+  }
+}
