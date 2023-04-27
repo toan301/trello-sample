@@ -1,0 +1,35 @@
+export class CheckoutLoginPage{
+    inputFirstName(firstname){
+        cy.get('input[aria-label="firstname"]').clear().type(firstname)
+    }
+    inputLastName(lastname){
+        cy.get('input[aria-label="lastname"]').clear().type(lastname)
+    }
+    inputAddressOne(addressOne){
+        cy.get('input[aria-label="cc_address_1"]').clear().type(addressOne)
+    }
+    inputCity(city){
+        cy.get('input[aria-label="city"]').clear().type(city)
+    }
+    inputPostcode(postcode){
+        cy.get('input[aria-label="postcode"]').clear().type(postcode)
+    }
+    selectCountry(country){
+        cy.get('select[aria-label="country"]').select(country)
+    }
+    selectCity(city){
+        cy.get('select[aria-label="zone"]').select(city)
+    }
+    inputEmail(email){
+        cy.get('input[aria-label="email"]').clear().type(email)
+    }
+    inputPhone(phone){
+        cy.get('input[aria-label="phone"]').clear().type(phone)
+    }
+    clickEnterAddress(){
+        cy.get('button[type="submit"]').click()
+    }
+    switchToLogin(){
+        cy.get('a#login_user').click()
+    }
+}
