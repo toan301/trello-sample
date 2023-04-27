@@ -10,7 +10,6 @@ describe("Account Dashboard Test",() => {
     const pd_pass = 'Abcd123!@'
     const url = 'https://hr.tstechnologies.com.vn/'
     beforeEach(() => {
-
         cy.visit(url)
         loginPage.login(email,pd_pass)
     })
