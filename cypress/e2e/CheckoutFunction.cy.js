@@ -5,16 +5,17 @@ import { HomePage } from "../pages/HomePage"
 import { LoginPage } from "../pages/LoginPage"
 import { ProductDetailPage } from "../pages/productDetailPage"
 
-const cartPage = new CartPage
-const productDetailPage = new ProductDetailPage
-const checkoutLoginPage = new CheckoutLoginPage
-const checkoutPage= new CheckoutPage
-const homePage= new HomePage
-const loginPage=new LoginPage
+const cartPage = new CartPage()
+const productDetailPage = new ProductDetailPage()
+const checkoutLoginPage = new CheckoutLoginPage()
+const checkoutPage= new CheckoutPage()
+const homePage= new HomePage()
+const loginPage=new LoginPage()
 
 describe('Place Order as Guest', () => {
     it('Successful', () => {
       cy.visit('https://hr.tstechnologies.com.vn/index.php?rt=product/product&product_id=53')
+      //Add item to cart and checkout
       productDetailPage.clickAddToCart()
       cartPage.clickCartUpdate()
       cartPage.clickCheckOut()
@@ -41,6 +42,36 @@ describe('Place Order as Guest', () => {
         .should('have.text','Order is completed!')
     })
   })
+
+  describe('Place order after logging in from checkout page',()=>{
+    it('Successful',()=>{
+      cy.visit('https://hr.tstechnologies.com.vn/index.php?rt=product/product&product_id=53')
+      //Add item to cart and checkout
+      productDetailPage.clickAddToCart()
+      cartPage.clickCartUpdate()
+      cartPage.clickCheckOut()
+      //Login from checkout page
+      checkoutLoginPage.switchToLogin()
+      checkoutLoginPage.inputUsername('vegeta732')
+      checkoutLoginPage.inputPassword('Abcd123!@')
+      checkoutLoginPage.clickLoginButton()
+      //assertion 1
+      cy.get('table[class*="shipment"] tr:first-child td')
+        .should('be.visible')
+        .should('have.text','Local Delivery')
+      cy.get('table[class*="shipment"] tr:nth-child(3) td')
+        .should('be.visible')
+        .should('have.text','Flat Rate')
+      //Choose shipping and place order
+      checkoutPage.chooseFlatRate()
+      checkoutPage.clickConfirmOrder()
+      //assertion 2
+      cy.get('h3.text-success')
+        .should('be.visible')
+        .should('have.text','Order is completed!')
+    })
+  })
+
   describe('Place order when logged in',()=>{
     it('Successful',()=>{
       cy.visit('https://hr.tstechnologies.com.vn/')
@@ -71,3 +102,5 @@ describe('Place Order as Guest', () => {
         .should('have.text','Order is completed!')
     })
   })
+
+  

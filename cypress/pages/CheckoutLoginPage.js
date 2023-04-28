@@ -1,4 +1,5 @@
 export class CheckoutLoginPage{
+    //Guest user
     inputFirstName(firstname){
         cy.get('input[aria-label="firstname"]').clear().type(firstname)
     }
@@ -29,7 +30,17 @@ export class CheckoutLoginPage{
     clickEnterAddress(){
         cy.get('button[type="submit"]').click()
     }
+    //login user
     switchToLogin(){
         cy.get('a#login_user').click()
+    }
+    inputUsername(user){
+        cy.get('input[name="loginname"]').clear().type(user)
+    }
+    inputPassword(password){
+        cy.get('input[name="password"]').clear().type(password)
+    }
+    clickLoginButton(){
+        cy.get('button#LoginFrm_Submit').click()
     }
 }
