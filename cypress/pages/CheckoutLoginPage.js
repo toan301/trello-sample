@@ -1,5 +1,10 @@
 export class CheckoutLoginPage{
-    //Guest user
+    /* constructor(field){
+        this.field=field
+    } */
+    
+    // firstNameField='input[aria-label="firstname'
+    //Guest user------------------------------
     inputFirstName(firstname){
         cy.get('input[aria-label="firstname"]').clear().type(firstname)
     }
@@ -30,7 +35,7 @@ export class CheckoutLoginPage{
     clickEnterAddress(){
         cy.get('button[type="submit"]').click()
     }
-    //login user
+    //login user-------------------------
     switchToLogin(){
         cy.get('a#login_user').click()
     }
@@ -42,5 +47,22 @@ export class CheckoutLoginPage{
     }
     clickLoginButton(){
         cy.get('button#LoginFrm_Submit').click()
+    }
+    //assertions: exlamation mark (!) in required field
+    
+    /* checkRequiredFieldFirstName(){
+    cy.get('input[aria-label="firstname"]')
+      .parent().next().children('i')
+      .should('be.visible')
+    }
+    checkRequiredFieldLastName(){
+    cy.get('input[aria-label="lastname"]')
+      .parent().next().children('i')
+      .should('be.visible')
+    } */
+    checkRequiredField(fieldSelector){
+    cy.get(fieldSelector)
+      .parent().next().children('i')
+      .should('be.visible')
     }
 }

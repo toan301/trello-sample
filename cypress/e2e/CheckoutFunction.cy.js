@@ -103,4 +103,27 @@ describe('Place Order as Guest', () => {
     })
   })
 
+  describe('Check required fields when creating a new account at checkout', () => {
+    it('Successful', () => {
+      cy.visit('https://hr.tstechnologies.com.vn/index.php?rt=product/product&product_id=53')
+      //Add item to cart and checkout
+      productDetailPage.clickAddToCart()
+      cartPage.clickCartUpdate()
+      cartPage.clickCheckOut()
+      //input fields as Guest
+      checkoutLoginPage.selectCountry('false') //do this so that the Select Country field can be checked as well
+      checkoutLoginPage.clickEnterAddress()
+      //Assertions: check all 9 required fields
+      checkoutLoginPage.checkRequiredField('input[aria-label="firstname"]')
+      checkoutLoginPage.checkRequiredField('input[aria-label="lastname"]')
+      checkoutLoginPage.checkRequiredField('input[aria-label="cc_address_1"]')
+      checkoutLoginPage.checkRequiredField('input[aria-label="city"]')
+      checkoutLoginPage.checkRequiredField('input[aria-label="postcode"]')
+      checkoutLoginPage.checkRequiredField('select[aria-label="country"]')
+      checkoutLoginPage.checkRequiredField('select[aria-label="zone"]')
+      checkoutLoginPage.checkRequiredField('input[aria-label="email"]')
+      checkoutLoginPage.checkRequiredField('input[aria-label="phone"]')
+    })
+  })
+
   
