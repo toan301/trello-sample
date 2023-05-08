@@ -1,10 +1,5 @@
 export class CheckoutLoginPage{
-    /* constructor(field){
-        this.field=field
-    } */
-    
-    // firstNameField='input[aria-label="firstname'
-    //Guest user------------------------------
+    //Guest user---
     inputFirstName(firstname){
         cy.get('input[aria-label="firstname"]').clear().type(firstname)
     }
@@ -48,21 +43,14 @@ export class CheckoutLoginPage{
     clickLoginButton(){
         cy.get('button#LoginFrm_Submit').click()
     }
+
     //assertions: exlamation mark (!) in required field
-    
-    /* checkRequiredFieldFirstName(){
-    cy.get('input[aria-label="firstname"]')
-      .parent().next().children('i')
-      .should('be.visible')
-    }
-    checkRequiredFieldLastName(){
-    cy.get('input[aria-label="lastname"]')
-      .parent().next().children('i')
-      .should('be.visible')
-    } */
     checkRequiredField(fieldSelector){
+    cy.log('check the required field by observing the exclamation mark "!"')
     cy.get(fieldSelector)
       .parent().next().children('i')
       .should('be.visible')
     }
+    
+    
 }

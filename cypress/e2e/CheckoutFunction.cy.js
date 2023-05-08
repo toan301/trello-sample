@@ -15,11 +15,11 @@ const loginPage=new LoginPage()
 describe('Place Order as Guest', () => {
     it('Successful', () => {
       cy.visit('https://hr.tstechnologies.com.vn/index.php?rt=product/product&product_id=53')
-      //Add item to cart and checkout
+      cy.log('Add item to cart and checkout')
       productDetailPage.clickAddToCart()
       cartPage.clickCartUpdate()
       cartPage.clickCheckOut()
-      //input valid info as Guest
+      cy.log('input valid info as Guest')
       checkoutLoginPage.inputFirstName('Phong')
       checkoutLoginPage.inputLastName('Nguyen')
       checkoutLoginPage.inputAddressOne('1 le duan')
@@ -30,13 +30,13 @@ describe('Place Order as Guest', () => {
       checkoutLoginPage.inputEmail('vegeta732@mailinator.com')
       checkoutLoginPage.inputPhone('1234567890')
       checkoutLoginPage.clickEnterAddress()
-      //assertion 1
-      cy.get('label[for*="default_local_delivery"] div').should('be.visible')
-      cy.get('label[for*="default_flat_rate_shipping"] div').should('be.visible')
-      //choose shipping
+      cy.log('assertion 1: check the shipping options are visible')
+      checkoutPage.checkLocalDeliveryVisible()
+      checkoutPage.checkFlatRateShippingVisible()
+      cy.log('choose shipping')
       checkoutPage.chooseLocalDelivery()
       checkoutPage.clickConfirmOrder()
-      //assertion 2
+      cy.log('assertion 2: Order is completed')
       cy.get('h3.text-success')
         .should('be.visible')
         .should('have.text','Order is completed!')
@@ -46,26 +46,22 @@ describe('Place Order as Guest', () => {
   describe('Place order after logging in from checkout page',()=>{
     it('Successful',()=>{
       cy.visit('https://hr.tstechnologies.com.vn/index.php?rt=product/product&product_id=53')
-      //Add item to cart and checkout
+      cy.log('Add item to cart and checkout')
       productDetailPage.clickAddToCart()
       cartPage.clickCartUpdate()
       cartPage.clickCheckOut()
-      //Login from checkout page
+      cy.log('Login from checkout page')
       checkoutLoginPage.switchToLogin()
       checkoutLoginPage.inputUsername('vegeta732')
       checkoutLoginPage.inputPassword('Abcd123!@')
       checkoutLoginPage.clickLoginButton()
-      //assertion 1
-      cy.get('table[class*="shipment"] tr:first-child td')
-        .should('be.visible')
-        .should('have.text','Local Delivery')
-      cy.get('table[class*="shipment"] tr:nth-child(3) td')
-        .should('be.visible')
-        .should('have.text','Flat Rate')
-      //Choose shipping and place order
+      cy.log('assertion 1: check the shipping options are visible')
+      checkoutPage.checkLocalDeliveryVisible()
+      checkoutPage.checkFlatRateShippingVisible()
+      cy.log('Choose shipping and place order')
       checkoutPage.chooseFlatRate()
       checkoutPage.clickConfirmOrder()
-      //assertion 2
+      cy.log('assertion 2: Order is completed')
       cy.get('h3.text-success')
         .should('be.visible')
         .should('have.text','Order is completed!')
@@ -76,27 +72,22 @@ describe('Place Order as Guest', () => {
     it('Successful',()=>{
       cy.visit('https://hr.tstechnologies.com.vn/')
       homePage.clickLoginAndRegisterButton()
-      //login
+      cy.log('login from homepage')
       loginPage.inputUser('vegeta732')
       loginPage.inputPassword('Abcd123!@')
       loginPage.clickLoginButton()
-      //add item to cart and prodceed to checkout
+      cy.log('Add item to cart and checkout')
       cy.visit('https://hr.tstechnologies.com.vn/index.php?rt=product/product&product_id=53')
       productDetailPage.clickAddToCart()
       cartPage.clickCartUpdate()
       cartPage.clickCheckOut()
-      //checkout
-      //assertion 1
-      cy.get('table[class*="shipment"] tr:first-child td')
-        .should('be.visible')
-        .should('have.text','Local Delivery')
-      cy.get('table[class*="shipment"] tr:nth-child(3) td')
-        .should('be.visible')
-        .should('have.text','Flat Rate')
-      //choose shipping
+      cy.log('assertion 1: check the shipping options are visible')
+      checkoutPage.checkLocalDeliveryVisible()
+      checkoutPage.checkFlatRateShippingVisible()
+      cy.log('Choose shipping and place order')
       checkoutPage.chooseLocalDelivery()
       checkoutPage.clickConfirmOrder()
-      //assertion 2
+      cy.log('assertion 2: Order is completed')
       cy.get('h3.text-success')
         .should('be.visible')
         .should('have.text','Order is completed!')
@@ -106,14 +97,15 @@ describe('Place Order as Guest', () => {
   describe('Check required fields when creating a new account at checkout', () => {
     it('Successful', () => {
       cy.visit('https://hr.tstechnologies.com.vn/index.php?rt=product/product&product_id=53')
-      //Add item to cart and checkout
+      cy.log('Add item to cart and checkout')
       productDetailPage.clickAddToCart()
       cartPage.clickCartUpdate()
       cartPage.clickCheckOut()
-      //input fields as Guest
-      checkoutLoginPage.selectCountry('false') //do this so that the Select Country field can be checked as well
+      cy.log('input fields as Guest')
+      checkoutLoginPage.selectCountry('false') 
+      cy.log('do this so that the Select Country field can be checked as well')
       checkoutLoginPage.clickEnterAddress()
-      //Assertions: check all 9 required fields
+      cy.log('Assertions: check all 9 required fields')
       checkoutLoginPage.checkRequiredField('input[aria-label="firstname"]')
       checkoutLoginPage.checkRequiredField('input[aria-label="lastname"]')
       checkoutLoginPage.checkRequiredField('input[aria-label="cc_address_1"]')
@@ -125,5 +117,35 @@ describe('Place Order as Guest', () => {
       checkoutLoginPage.checkRequiredField('input[aria-label="phone"]')
     })
   })
+
+  describe('Change Shipping options successfully',()=>{
+    it('successful',()=>{
+      cy.visit('https://hr.tstechnologies.com.vn/')
+      homePage.clickLoginAndRegisterButton()
+      cy.log('---login---')
+      loginPage.inputUser('vegeta732')
+      loginPage.inputPassword('Abcd123!@')
+      loginPage.clickLoginButton()
+      cy.log('add item to cart and prodceed to checkout')
+      cy.visit('https://hr.tstechnologies.com.vn/index.php?rt=product/product&product_id=53')
+      productDetailPage.clickAddToCart()
+      cartPage.clickCartUpdate()
+      cartPage.clickCheckOut()
+      cy.log('---checkout---')
+      cy.log('assertion 1: check the shipping options are visible')
+      checkoutPage.checkLocalDeliveryVisible()
+      checkoutPage.checkFlatRateShippingVisible()
+      cy.log('Choose Local Delivery and assert')
+      checkoutPage.chooseLocalDelivery()
+      checkoutPage.checkLocalDeliverySelected()
+      cy.log('Choose Flat Rate Shipping and assert')
+      checkoutPage.chooseFlatRate()
+      checkoutPage.checkFlatRateShippingSelected()
+      cy.log('Switch back to Local Delivery and assert')
+      checkoutPage.chooseLocalDelivery()
+      checkoutPage.checkLocalDeliverySelected()
+      })
+    })
+  
 
   
