@@ -53,21 +53,5 @@ export class EditAccountDetailsPage extends AccountDashboardPage{
         this.validateValue(this.txt_Telephone,telephone)
         this.validateValue(this.txt_Fax,fax)
     }
-    validateEmailField(){
-        let keys = ['littlebiggmail.com','littlebig@.com','littlebig@gmail.','littlebig@gmail.c','littlebig','@gmail.com','']
-        keys.forEach(key => {
-            this.inputData(this.txt_Email,key)
-            this.clickOnButton(this.btn_Continue)
-            this.validateErrorMessageIsDisplayed("E-Mail Address does not appear to be valid!")
-        });
-    }
-    validateTelephoneField(){
-        let keys = ['01','littlebig','little@11111','123,35432','012345678901234567890123456789012']
-        keys.forEach(key => {
-            this.inputData(this.txt_Telephone,key)
-            this.clickOnButton(this.btn_Continue)
-            this.validateErrorMessageIsDisplayed("Telephone must be between 3 and 32 numeric only characters!")
-        });
-    }
 
 }
