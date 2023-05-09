@@ -1,5 +1,6 @@
-export class AccountDashboardPage{
-    //CSS
+import { CommonAM } from "./commonAM"
+
+export class AccountDashboardPage extends CommonAM{
     btn_Edit_Account_Details = "a[data-original-title='Edit account details']"
     btn_Change_Password = "a[data-original-title='Change password']"
     btn_Manage_Address_Book = ".nav-dash a[data-original-title='Manage Address Book']"
@@ -48,5 +49,8 @@ export class AccountDashboardPage{
         cy.get(class_basic).contains(link).click().then(el=>{
             cy.get(".maintext").contains(page).should("be.visible")
         })
+    }
+    validateURL(url){
+        cy.url().should('eq',url)
     }
 }
