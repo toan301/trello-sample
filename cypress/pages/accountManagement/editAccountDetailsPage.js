@@ -6,9 +6,7 @@ export class EditAccountDetailsPage extends AccountDashboardPage{
     txt_Last_Name = "#AccountFrm_lastname"
     txt_Email = "#AccountFrm_email"
     txt_Telephone = "#AccountFrm_telephone"
-    txt_Fax = "#AccountFrm_fax"
-    btn_Back = "a[title='Back']"
-    btn_Continue = "button[title='Continue']"
+    txt_Fax = "#AccountFrm_fax"    
 
     //Methods
     validateLoginName(loginName){
@@ -21,10 +19,7 @@ export class EditAccountDetailsPage extends AccountDashboardPage{
             cy.get(element).should("be.visible")
         });
     }
-    validateErrorMessageIsDisplayed(message){
-        cy.get(".help-block").contains(message).should("be.visible")
-        cy.get(".alert-error").contains("Oops, there is an error with information provided!").should("be.visible")
-    }
+    
     validateErrorMessageIsDisplayedWhenFieldIsBlank(field,message){ 
         cy.get(field).invoke('val').then($txt =>{
             this.clearDataOnField(field)

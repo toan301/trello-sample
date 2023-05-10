@@ -10,6 +10,7 @@ export class AccountDashboardPage extends CommonAM{
     btn_Downloads = ".nav-dash a[data-original-title='Downloads']"
     btn_Notifications = "a[data-original-title='Notifications']"
     btn_Logoff = "a[data-original-title='Logoff']"
+
     //Methods
     getToTheAccountDashboard(){
         cy.get(".topnavbar.navbar select").click().select("Account")
@@ -53,4 +54,5 @@ export class AccountDashboardPage extends CommonAM{
     validateURL(url){
         cy.url().should('eq',url)
     }
+
 }
