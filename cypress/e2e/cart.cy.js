@@ -1,6 +1,6 @@
 import { loginPage } from "../pages/loginPage";
 import { cartPage } from "../pages/cartPage";
-import { homePage } from "../pages/homepage";
+import { homePage } from "../pages/homePage";
 
 const login = new loginPage()
 const url = 'https://hr.tstechnologies.com.vn/index.php?rt=account/login'
