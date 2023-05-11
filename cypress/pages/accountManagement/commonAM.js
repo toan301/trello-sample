@@ -27,4 +27,7 @@ export class CommonAM{
     validateMessageSuccessfully(message){
         cy.get(".alert-success").contains(message).should("be.visible")
     }
+    selectDropdown(element,value){
+        cy.get(element).select(value)
+    }
 }
