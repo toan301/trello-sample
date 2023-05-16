@@ -18,12 +18,19 @@ export default class EditAccountDetailsPage extends AccountDashboardPage {
 
   // Methods
 
+  /**
+   *
+   * @param {*} loginName is the text should be displayed for Login Name field
+   */
   validateLoginName(loginName) {
     cy.get('label').contains('Login Name').parent().find('div.input-group')
       .invoke('text')
       .should('contains', loginName);
   }
 
+  /**
+   * Validate all elements should be displayed on the Edit Account Details page
+   */
   validateElementsOnPage() {
     const elements = [
       this.txt_First_Name,
@@ -39,11 +46,20 @@ export default class EditAccountDetailsPage extends AccountDashboardPage {
     });
   }
 
+  /**
+   *
+   * @param {*} message is the error message should be displayed
+   */
   validateErrorMessageIsDisplayed(message) {
     cy.get('.help-block').contains(message).should('be.visible');
     cy.get('.alert-error').contains('Oops, there is an error with information provided!').should('be.visible');
   }
 
+  /**
+   *
+   * @param {*} field is CSS of the field should be empty
+   * @param {*} message is the error message should be displayed
+   */
   validateErrorMessageIsDisplayedWhenFieldIsBlank(field, message) {
     cy.get(field).invoke('val').then(($txt) => {
       this.clearDataOnField(field);
@@ -53,12 +69,23 @@ export default class EditAccountDetailsPage extends AccountDashboardPage {
     });
   }
 
+  /**
+   *
+   */
   validateErrorMessageIsDisplayedWhenRequiredFieldsBlanks() {
     this.validateErrorMessageIsDisplayedWhenFieldIsBlank(this.txt_First_Name, 'First Name must be between 1 and 32 characters!');
     this.validateErrorMessageIsDisplayedWhenFieldIsBlank(this.txt_Last_Name, 'Last Name must be between 1 and 32 characters!');
     this.validateErrorMessageIsDisplayedWhenFieldIsBlank(this.txt_Email, 'E-Mail Address does not appear to be valid!');
   }
 
+  /**
+   *
+   * @param {*} firstName is the text should be entered to First Name field
+   * @param {*} lastName is the text should be entered to Last Name field
+   * @param {*} email is the text should be entered to Email field
+   * @param {*} telephone is the text should be entered to Telephone field
+   * @param {*} fax is the text should be entered to Fax field
+   */
   validateEditInformationSuccessfully(firstName, lastName, email, telephone, fax) {
     this.inputData(this.txt_First_Name, firstName);
     this.inputData(this.txt_Last_Name, lastName);

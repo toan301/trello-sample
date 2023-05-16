@@ -21,15 +21,24 @@ export default class AccountDashboardPage extends CommonAM {
   btn_Logoff = 'a[data-original-title="Logoff"]';
 
   // Methods
-
+  /**
+   *
+   */
   getToTheAccountDashboard() {
     cy.get('.topnavbar.navbar select').select('Account');
   }
 
+  /**
+   *
+   * @param {*} text is bread crumb should be displayed on page
+   */
   validateBreadCrumb(text) {
     cy.get('.breadcrumb li a').contains(text).should('be.visible');
   }
 
+  /**
+   * validate all links should be displayed on Account Dashboard page
+   */
   validateLinksAreVisible() {
     const classBasic = '.side_account_list a';
     const links = [
@@ -49,6 +58,9 @@ export default class AccountDashboardPage extends CommonAM {
     });
   }
 
+  /**
+   * validate all elements should be displayed on Account Dashboard page
+   */
   validateAccountDashboardUI() {
     cy.get('.maintext').contains('My Account').should('be.visible');
     const buttons = [
@@ -73,11 +85,21 @@ export default class AccountDashboardPage extends CommonAM {
     this.validateLinksAreVisible();
   }
 
+  /**
+   *
+   * @param {*} button is CSS of button
+   * @param {*} page is page title of the navigated page
+   */
   validateButtonWorks(button, page) {
     cy.get(button).click();
     cy.get('.maintext').contains(page).should('be.visible');
   }
 
+  /**
+   *
+   * @param {*} link is the link is clicked
+   * @param {*} page is page title of the navigated page
+   */
   validateLinksWorks(link, page) {
     const classBasic = '.side_account_list a';
     cy.get(classBasic).contains(link).click();
