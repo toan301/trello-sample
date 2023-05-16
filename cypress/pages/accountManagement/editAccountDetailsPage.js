@@ -71,15 +71,6 @@ export default class EditAccountDetailsPage extends AccountDashboardPage {
 
   /**
    *
-   */
-  validateErrorMessageIsDisplayedWhenRequiredFieldsBlanks() {
-    this.validateErrorMessageIsDisplayedWhenFieldIsBlank(this.txt_First_Name, 'First Name must be between 1 and 32 characters!');
-    this.validateErrorMessageIsDisplayedWhenFieldIsBlank(this.txt_Last_Name, 'Last Name must be between 1 and 32 characters!');
-    this.validateErrorMessageIsDisplayedWhenFieldIsBlank(this.txt_Email, 'E-Mail Address does not appear to be valid!');
-  }
-
-  /**
-   *
    * @param {*} firstName is the text should be entered to First Name field
    * @param {*} lastName is the text should be entered to Last Name field
    * @param {*} email is the text should be entered to Email field

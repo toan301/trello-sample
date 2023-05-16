@@ -26,7 +26,6 @@ describe('Edit Account Details Test', () => {
   });
 
   it('Validate error message is displayed when required field is blank', () => {
-    // editAccountDetailsPage.validateErrorMessageIsDisplayedWhenRequiredFieldsBlanks();
     editAccountDetailsPage.validateErrorMessageIsDisplayedWhenFieldIsBlank(editAccountDetailsPage.txt_First_Name, 'First Name must be between 1 and 32 characters!');
     editAccountDetailsPage.validateErrorMessageIsDisplayedWhenFieldIsBlank(editAccountDetailsPage.txt_Last_Name, 'Last Name must be between 1 and 32 characters!');
     editAccountDetailsPage.validateErrorMessageIsDisplayedWhenFieldIsBlank(editAccountDetailsPage.txt_Email, 'E-Mail Address does not appear to be valid!');
