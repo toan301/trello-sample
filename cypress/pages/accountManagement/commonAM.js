@@ -42,11 +42,19 @@ export default class CommonAM {
     cy.get(element).invoke('val').should('eq', key);
   }
 
+  /**
+   *
+   * @param {*} message is the error message should be displayed
+   */
   validateErrorMessageIsDisplayed(message) {
     cy.get('.help-block').contains(message).should('be.visible');
     cy.get('.alert-error').contains('Oops, there is an error with information provided!').should('be.visible');
   }
 
+  /**
+   *
+   * @param {*} message is the sucessful message should be displayed
+   */
   validateMessageSuccessfully(message) {
     cy.get('.alert-success').contains(message).should('be.visible');
   }
