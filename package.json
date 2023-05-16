@@ -11,10 +11,19 @@
   "author": "Toan Tran",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.8.1",
+    "cypress": "^12.10.0",
     "eslint": "^8.38.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-cypress": "^2.13.2",
     "eslint-plugin-import": "^2.27.5"
-  }
+  },
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toan301/trello-sample.git"
+  },
+  "bugs": {
+    "url": "https://github.com/toan301/trello-sample/issues"
+  },
+  "homepage": "https://github.com/toan301/trello-sample#readme"
 }

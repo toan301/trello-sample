@@ -4,16 +4,15 @@ module.exports = {
     es2021: true,
   },
   extends: ['airbnb-base', 'plugin:cypress/recommended'],
-  plugins: [
-    'cypress',
-  ],
-  overrides: [
-  ],
+  plugins: ['cypress'],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
   rules: {
+    'linebreak-style': 0,
     'no-undef': 0,
+    'class-methods-use-this': 0,
   },
 };
