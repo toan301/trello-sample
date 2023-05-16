@@ -9,6 +9,9 @@ export default class ChangePasswordPage extends AccountDashboardPage {
   txt_New_Password_Confirm = '#PasswordFrm_confirm';
 
   // Methods
+  /**
+   * Validate all elements should be displayed on the Change Password page
+   */
   validateElementsOnPage() {
     const elements = [
       this.txt_Current_Password,
@@ -20,6 +23,12 @@ export default class ChangePasswordPage extends AccountDashboardPage {
     });
   }
 
+  /**
+   *
+   * @param {*} currentPass is the text should be entered in the Current Password field
+   * @param {*} newPass is the text should be entered in the New Password field
+   * @param {*} confirmNewPass is the text should be entered in the Confirm New Password field
+   */
   changePassword(currentPass, newPass, confirmNewPass) {
     this.inputData(this.txt_Current_Password, currentPass);
     this.inputData(this.txt_New_Password, newPass);
