@@ -58,8 +58,30 @@ export default class CommonAM {
   validateMessageSuccessfully(message) {
     cy.get('.alert-success').contains(message).should('be.visible');
   }
-   
-    selectDropdown(element,value){
-        cy.get(element).select(value)
+
+  /**
+   *
+   * @param {*} element is CSS of dropdown
+   * @param {*} value is option will be selected
+   */
+  selectDropdown(element, value) {
+    if (value != null) { cy.get(element).select(value); }
+  }
+
+  /**
+   *
+   * @param {*} length is the lenght of string
+   * @returns
+   */
+  randomString(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
     }
+    return result;
+  }
 }
