@@ -55,7 +55,7 @@ describe('Manage Address Book Test', () => {
 
   it('Validate First Name field', () => {
     addressBookPage.clickOnButton(addressBookPage.btn_New_Address);
-    const keys = [addressBookPage.randomString(33), null];
+    const keys = [addressBookPage.randomStrings(33), null];
     keys.forEach((key) => {
       addressBookPage.inputDataToAddressForm(key, 'Blue', '179 TranCaoVan', 'London', 'Badakhshan', '156NCUI', 'Afghanistan', false);
       addressBookPage.validateErrorMessageIsDisplayed('First Name must be between 1 and 32 characters!');
@@ -64,7 +64,7 @@ describe('Manage Address Book Test', () => {
 
   it('Validate Last Name field', () => {
     addressBookPage.clickOnButton(addressBookPage.btn_New_Address);
-    const keys = [addressBookPage.randomString(33), null];
+    const keys = [addressBookPage.randomStrings(33), null];
     keys.forEach((key) => {
       addressBookPage.inputDataToAddressForm('Blue', key, '179 TranCaoVan', 'London', 'Badakhshan', '156NCUI', 'Afghanistan', false);
       addressBookPage.validateErrorMessageIsDisplayed('Last Name must be between 1 and 32 characters!');
@@ -73,7 +73,7 @@ describe('Manage Address Book Test', () => {
 
   it('Validate Address 1 field', () => {
     addressBookPage.clickOnButton(addressBookPage.btn_New_Address);
-    const keys = [addressBookPage.randomString(2), addressBookPage.randomString(129), null];
+    const keys = [addressBookPage.randomStrings(2), addressBookPage.randomStrings(129), null];
     keys.forEach((key) => {
       addressBookPage.inputDataToAddressForm('Eye', 'Blue', key, 'London', 'Badakhshan', '156NCUI', 'Afghanistan', false);
       addressBookPage.validateErrorMessageIsDisplayed('Address must be between 3 and 128 characters!');
@@ -82,7 +82,7 @@ describe('Manage Address Book Test', () => {
 
   it('Validate City field', () => {
     addressBookPage.clickOnButton(addressBookPage.btn_New_Address);
-    const keys = [addressBookPage.randomString(2), addressBookPage.randomString(129), null];
+    const keys = [addressBookPage.randomStrings(2), addressBookPage.randomStrings(129), null];
     keys.forEach((key) => {
       addressBookPage.inputDataToAddressForm('Eye', 'Blue', '179 TranCaoVan', key, 'Badakhshan', '156NCUI', 'Afghanistan', false);
       addressBookPage.validateErrorMessageIsDisplayed('City must be between 3 and 128 characters!');
@@ -97,7 +97,7 @@ describe('Manage Address Book Test', () => {
 
   it('Validate Zip/Post Code field', () => {
     addressBookPage.clickOnButton(addressBookPage.btn_New_Address);
-    const keys = [addressBookPage.randomString(1), addressBookPage.randomString(11), null];
+    const keys = [addressBookPage.randomStrings(1), addressBookPage.randomStrings(11), null];
     keys.forEach((key) => {
       addressBookPage.inputDataToAddressForm('Eye', 'Blue', '179 TranCaoVan', 'London', 'Badakhshan', key, 'Afghanistan', false);
       addressBookPage.validateErrorMessageIsDisplayed('Zip/postal code must be between 2 and 10 characters!');

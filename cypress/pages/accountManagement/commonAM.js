@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { faker } from '@faker-js/faker';
+
 export default class CommonAM {
   btn_Continue = "button[title='Continue']";
 
@@ -70,18 +73,11 @@ export default class CommonAM {
 
   /**
    *
-   * @param {*} length is the lenght of string
+   * @param {*} length
    * @returns
    */
-  randomString(length) {
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < length) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-      counter += 1;
-    }
-    return result;
+  randomStrings(length) {
+    const randomString = faker.random.alphaNumeric(length);
+    return randomString;
   }
 }
